@@ -78,7 +78,7 @@ class JavInfo(Star):
                         img_response = await self.client.get(data.get("thumb"), headers=headers, timeout=30.0)
                         img_response.raise_for_status()
                         img_data = await img_response.aread()
-                        img_data = await image_obfus(img_data)
+                        img_data = await image_compress(img_data)
                         chain = [
                             Image.fromBytes(img_data)
                         ]
