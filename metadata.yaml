@@ -1,5 +1,5 @@
 name: jav_info # 这是你的插件的唯一识别名。
 desc: 获取车牌对应数据 # 插件简短描述
-version: v1.0.0 # 插件版本号。格式：v1.1.1 或者 v1.1
+version: v1.0.1 # 插件版本号。格式：v1.1.1 或者 v1.1
 author: 棒棒糖 # 作者
 repo: https://github.com/zhoufan47/astrbot_plugin_jav_info # 插件的仓库地址
