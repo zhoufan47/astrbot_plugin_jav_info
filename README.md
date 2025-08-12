@@ -70,6 +70,7 @@ JAV_INFO 是一个基于 AstrBot 开发的 JAVDB数据查询插件，通过javdb
 
 ## 📝 TODO
 []允许发送磁力链接
+[]支持cookie和登录功能
 []接入jbus平台
 []发送的磁力链接标识当前做种人数
 
