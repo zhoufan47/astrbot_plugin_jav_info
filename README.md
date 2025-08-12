@@ -36,14 +36,14 @@ JAV_INFO 是一个基于 AstrBot 开发的 JAVDB数据查询插件，通过javdb
 
 ### 基础命令
 
-- `/javdb 番号` - 查询该番号的信息
+- `/jav 番号` - 查询该番号的信息
 
 ## 💡 使用示例
 
 ### 查询SSNI-242的番号信息
 
 ```
-/javdb SSNI-242
+/jav SSNI-242
 ```
 
 ## ❓ 常见问题
