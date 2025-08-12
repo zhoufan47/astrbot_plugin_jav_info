@@ -96,8 +96,8 @@ class JavInfo(Star):
             logger.error(f"处理 JavDB 查询时发生意外错误: {e}",)
             yield event.plain_result("🤖 查询过程中发生未知内部错误，请联系管理员检查后台日志。")
 
-async def image_obfus(img_data):
-    """破坏图片哈希"""
+async def image_compress(img_data):
+    """介由图片格式压缩以破坏图片哈希"""
     from PIL import Image as ImageP
     from io import BytesIO
     import random
@@ -105,36 +105,8 @@ async def image_obfus(img_data):
     try:
         with BytesIO(img_data) as input_buffer:
             with ImageP.open(input_buffer) as img:
-                if img.mode != "RGB":
-                    img = img.convert("RGB")
-
-                width, height = img.size
-                pixels = img.load()
-
-                points = []
-                for _ in range(3):
-                    while True:
-                        x = random.randint(0, width - 1)
-                        y = random.randint(0, height - 1)
-                        if (x, y) not in points:
-                            points.append((x, y))
-                            break
-
-                for x, y in points:
-                    r, g, b = pixels[x, y]
-
-                    r_change = random.choice([-1, 1])
-                    g_change = random.choice([-1, 1])
-                    b_change = random.choice([-1, 1])
-
-                    new_r = max(0, min(255, r + r_change))
-                    new_g = max(0, min(255, g + g_change))
-                    new_b = max(0, min(255, b + b_change))
-
-                    pixels[x, y] = (new_r, new_g, new_b)
-
                 with BytesIO() as output:
-                    img.save(output, format="JPEG",subsampling=0, quality=85)
+                    img.save(output, format="JPEG",subsampling=1, quality=80)
                     return output.getvalue()
 
     except Exception as e:
