@@ -3,12 +3,8 @@ from astrbot.api import logger
 # 导入 AstrBot 核心 API
 from astrbot.api.event import filter, AstrMessageEvent
 from astrbot.api.star import Context, Star, register
-from astrbot.core.message.components import Image, Plain
-from astrbot.core.utils.io import download_image_by_url
+from astrbot.core.message.components import Image
 from .crawlers import javdb
-
-# 1. 创建一个全局的 httpx.AsyncClient 变量，但不在此时初始化
-client: httpx.AsyncClient
 
 # 2. 创建 Plugin 实例，这是 AstrBot 插件的标准写法
 @register("JavDB 查询插件", "棒棒糖", "根据用户发送的番号，从 JavDB 查询影片信息", "1.0.1")
@@ -81,7 +77,7 @@ class JavInfo(Star):
                         }
                         img_response = await self.client.get(data.get("thumb"), headers=headers, timeout=30.0)
                         img_response.raise_for_status()
-                        img_data = img_response.read()
+                        img_data = await img_response.aread()
                         img_data = await image_obfus(img_data)
                         chain = [
                             Image.fromBytes(img_data)
@@ -92,8 +88,8 @@ class JavInfo(Star):
                     #         Plain(text=text_info)
                     #     ]
                     #     yield event.chain_result(chain)
-                except Exception as imgErr:
-                    logger.error(f"处理封面异常: {imgErr}", )
+                except Exception as img_err:
+                    logger.error(f"处理封面异常: {img_err}", )
                     yield event.plain_result("😭 获取封面失败 ")
 
         except Exception as e:
