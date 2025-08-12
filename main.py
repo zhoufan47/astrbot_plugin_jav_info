@@ -7,7 +7,7 @@ from astrbot.core.message.components import Image
 from .crawlers import javdb
 
 # 2. 创建 Plugin 实例，这是 AstrBot 插件的标准写法
-@register("JavDB 查询插件", "棒棒糖", "根据用户发送的番号，从 JavDB 查询影片信息", "1.0.1")
+@register("JavDB 查询插件", "棒棒糖", "根据用户发送的番号，从 JavDB 查询影片信息", "1.0.2")
 class JavInfo(Star):
 
     def __init__(self, context: Context):
